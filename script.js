@@ -1,13 +1,13 @@
-// Wait for the DOM to load 
+// Wait for the DOM to load before running the script
 document.addEventListener('DOMContentLoaded', function () {
-    // Step 2: Selecting DOM Elements
+    // Step 2: Select DOM Elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Step 3: Creating the addTask Function
+    // Step 3: Create the addTask Function
     function addTask() {
-        // Getting the input value and trim whitespace
+        // Get the input value and trim whitespace
         const taskText = taskInput.value.trim();
 
         // Check if input is empty
@@ -17,19 +17,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Step 4: Task Creation
-        // Creating new list item
+        // Create new list item
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Creating remove button
+        // Create remove button
         const removeButton = document.createElement('button');
         removeButton.textContent = "Remove";
-        removeButton.className = 'remove-btn';
+        removeButton.classList.add('remove-btn'); // ✅ using classList.add
 
-        // Assigning onclick event to remove the task
-        removeButton.onclick = function () {
+        // Attach Event Listener to remove button
+        removeButton.addEventListener('click', function () {
             taskList.removeChild(li);
-        };
+        });
 
         // Append remove button to li
         li.appendChild(removeButton);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         taskInput.value = "";
     }
 
-    // Step 5: Attaching Event Listeners
+    // Step 5: Attach Event Listeners
     addButton.addEventListener('click', addTask);
 
     taskInput.addEventListener('keypress', function (event) {
@@ -49,6 +49,5 @@ document.addEventListener('DOMContentLoaded', function () {
             addTask();
         }
     });
-
-
 });
+
